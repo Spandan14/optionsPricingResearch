@@ -50,11 +50,11 @@ def longstaffSchwartzMethodHigherDims(N, T, r, S_0, K, v, q, M, k, p, w, callOrP
             continuationValues[inMoneyPaths[i]] = count
             count = 0
 
-        for i in range(M):
-            if (i in inMoneyPaths) and (max(mult*(S[i][time] - K), 0) > continuationValues[i]):
-                P[i] = (max(mult * (S[i][time] - K), 0))
+        for i in range(inMoneyPaths):
+            if(max(mult*(S[inMoneyPaths[i]][time] - K), 0) > continuationValues[inMoneyPaths[i]]):
+                P[i] = (max(mult * (S[inMoneyPaths[i]][time] - K), 0))
             else:
-                P[i] = math.e ** (-r * dt) * P[i]
+                P[i] = math.e ** (-r * dt) * P[inMoneyPaths[i]]
 
         inMoneyPaths = np.array
 
