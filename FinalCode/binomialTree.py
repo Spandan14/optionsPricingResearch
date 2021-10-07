@@ -1,7 +1,6 @@
 import math
 import numpy as np
 
-
 def binomialTree(N, T, r, S_0, K, v, q, callOrPut):
     dt = T / N
     u = math.e ** (v * math.sqrt(dt))
