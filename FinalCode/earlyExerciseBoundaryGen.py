@@ -1,6 +1,5 @@
 import math
 import numpy as np
-from callPutEnum import CallPut
 
 def earlyExerciseBoundaryGen(N, T, r, S_0, K, v, q, binarySteps, function, callOrPut):
     ans = np.zeros(N + 1)
