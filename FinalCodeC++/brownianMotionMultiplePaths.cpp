@@ -1,4 +1,4 @@
-#include "functions.h
+#include "functions.h"
 #include <random>
 
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 double* brownianMotionMultiplePaths(int N, double T, double r, double S_0[MAXDIM], double v[MAXDIM], double q[MAXDIM], double p[MAXDIM][MAXDIM], double w[MAXDIM], int numAssets) {
     double dt = T / N;
     double A[MAXDIM][MAXDIM];
-    double S_basket[MAXN+1];
+    static double S_basket[MAXN+1];
     double sig[MAXDIM][MAXDIM];
 
     double count[MAXDIM];

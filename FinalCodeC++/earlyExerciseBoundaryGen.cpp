@@ -3,7 +3,7 @@
 using namespace std;
 
 double* earlyExerciseBoundaryGen(int N, double T, double r, double S_0, double K, double v, double q, int binarySteps, double (*function)(int, double, double, double, double, double, double, callPut), callPut callOrPut) {
-    double ans[MAXN + 1];
+    static double ans[MAXN + 1];
     double mult = 2 * ((static_cast<int>(callOrPut)) - 1.5);
     for (int n = 0; n < N; ++n) {
         

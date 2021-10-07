@@ -1,5 +1,5 @@
 #include "functions.h"
-#define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
+#include <vector>
 
 using namespace std;
 
@@ -58,8 +58,9 @@ double longstaffSchwartzMethodHigherDims(int N, double T, double r, double S_0[M
             sum = 0;
         }
 
-        for (int i = 0; i < M; ++i) {
-            P[i] = find(inMoneyPaths.begin(), inMoneyPaths.end(), i) != inMoneyPaths.end() && max(mult * (S[i][time] - K), 0.0) > contValues[i] ? max(mult * (S[i][time] - K), 0.0) : exp(-r * dt) * P[i];
+        for (int i = 0; i < inMoneyPaths.size(); ++i) {
+            int temp = inMoneyPaths[i];
+            P[temp] = max(mult * (S[temp][time] - K), 0.0) > contValues[temp] ? max(mult * (S[temp][time] - K), 0.0) : exp(-r * dt) * P[temp];
         }
 
         inMoneyPaths.clear();

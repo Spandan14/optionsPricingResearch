@@ -1,5 +1,6 @@
 #include "functions.h"
 #include <random>
+#include <iostream>
 
 using namespace std;
 

@@ -1,5 +1,4 @@
 #include "functions.h"
-#define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
 using namespace std;
 

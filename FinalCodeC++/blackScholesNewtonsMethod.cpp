@@ -8,4 +8,6 @@ double blackScholesNewtonsMethod(double tau, double r, double S_0, double K, dou
     for (int step = 0; step < newtonSteps; ++step) {
         v_new = v_old - ((blackScholes(tau, r, S_0, K, v_old, q, callOrPut) - optionPrice)/blackScholesPartialWRTVolatility(tau, r, S_0, K, v_old, q, callOrPut));
     }
+
+    return v_new;
 }

@@ -1,5 +1,6 @@
 #include "functions.h"
-#define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -20,8 +21,8 @@ double longstaffSchwartzMethod(int N, double T, double r, double S_0, double K, 
             S[i][j] = brownianPath[j];
         }
         P[i] = max(mult * (S[i][N] - K), 0.0);
-    }   
-
+    }
+    
     for (int time = N - 1; time > 0; --time) {
         double contValues[LSM_MAXM];
 
@@ -48,7 +49,6 @@ double longstaffSchwartzMethod(int N, double T, double r, double S_0, double K, 
 
         Eigen::MatrixXd beta = leastSquares(xi, yi, k, inMoneyPaths.size());
      
-        
         for (int i = 0; i < inMoneyPaths.size(); ++i) {
             double sum = 0;
             for (int j = 0; j < k + 1; ++j) {
@@ -58,8 +58,9 @@ double longstaffSchwartzMethod(int N, double T, double r, double S_0, double K, 
             sum = 0;
         }
 
-        for (int i = 0; i < M; ++i) {
-            P[i] = find(inMoneyPaths.begin(), inMoneyPaths.end(), i) != inMoneyPaths.end() && max(mult * (S[i][time] - K), 0.0) > contValues[i] ? max(mult * (S[i][time] - K), 0.0) : exp(-r * dt) * P[i];
+        for (int i = 0; i < inMoneyPaths.size(); ++i) {
+            int temp = inMoneyPaths[i];
+            P[temp] = max(mult * (S[temp][time] - K), 0.0) > contValues[temp] ? max(mult * (S[temp][time] - K), 0.0) : exp(-r * dt) * P[temp];
         }
 
         inMoneyPaths.clear();
